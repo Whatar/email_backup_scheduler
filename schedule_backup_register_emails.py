@@ -28,7 +28,13 @@ BACKUP_FILE = "out/emails_backup.mbox"
 LOG_FILE = "out/backup.log"
 
 
+def create_folders():
+    if not os.path.exists("out"):
+        os.makedirs("out")
+
+
 def fetch_and_backup_emails():
+    create_folders()
     print("Starting email backup...")
 
     # Connection to the IMAP server
