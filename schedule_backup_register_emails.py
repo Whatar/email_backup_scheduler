@@ -94,7 +94,7 @@ def fetch_and_backup_emails():
                             formatted_email = f"{separator}\n{
                                 from_}{to}{date}\n{body.decode()}"
 
-                            backup.write(formatted_email)
+                            backup.write(str(formatted_email.encode("utf-8")))
                             backup.write("\n\n")
 
             # Update the last saved ID
