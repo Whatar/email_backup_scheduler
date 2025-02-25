@@ -91,11 +91,15 @@ def fetch_and_backup_emails():
                             to = f"To: {msg.get('To')}\n"
                             date = f"Date: {msg.get('Date')}\n"
 
-                            formatted_email = f"{separator}\n{
-                                from_}{to}{date}\n{body.decode()}"
+                            try:
+                                formatted_email = f"{separator}\n{
+                                    from_}{to}{date}\n{body.decode()}"
 
-                            backup.write(str(formatted_email.encode("utf-8")))
-                            backup.write("\n\n")
+                                backup.write(
+                                    str(formatted_email.encode("utf-8")))
+                                backup.write("\n\n")
+                            except Exception as e:
+                                print(f"Error while writing email: {e}")
 
             # Update the last saved ID
             with open(LOG_FILE, "a") as log:
